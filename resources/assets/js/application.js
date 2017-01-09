@@ -3,6 +3,8 @@ var Twig = require("twig");
     require("jquery");
     require('./vendor/jquery.inview');
     require("slick");
+    require('./popup/main');
+    // require('./popup/modernizr');
 
 global.app = {
     initQtReady: require("./qt_ready"),
