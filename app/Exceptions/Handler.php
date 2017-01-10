@@ -40,21 +40,21 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Exception $e
+     * @param \Exception               $e
      *
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $e)
     {
         $client = new Api(config('quintype.api-host'));
-        $menuItems = array_merge($client->config(), config('quintype'))["layout"]["menu"];
+        $menuItems = array_merge($client->config(), config('quintype'))['layout']['menu'];
         $nestedMenuItems = $client->prepareNestedMenu($menuItems);
 
         if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
             return response()->view('errors/404', ['client' => $client, 'nestedMenuItems' => $nestedMenuItems], 404);
         }
         if ($e instanceof \GuzzleHttp\Exception\ClientException) {
-            return response()->view('errors/404', ['client' => $client, 'nestedMenuItems' => $nestedMenuItems], 404);
+            return response()->json(["message"=>$e->getMessage()], $e->getCode());
         }
 
         return parent::render($request, $e);

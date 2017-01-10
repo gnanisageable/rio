@@ -9,28 +9,37 @@ class ProxyController extends BaseController
 {
     public function __construct()
     {
-        $this->host = config("quintype.api-host");
+        $this->host = config('quintype.api-host');
     }
 
-    function getRoute($request) {
-        $baseUrl = $this->host . "/" . $request->path();
+    public function getRoute($request)
+    {
+        $baseUrl = $this->host.'/'.$request->path();
         $queryString = $request->getQueryString();
 
-        if($queryString && $queryString != "")
-            return $baseUrl . '?' . $queryString;
-        else
+        if ($queryString && $queryString != '') {
+            return $baseUrl.'?'.$queryString;
+        } else {
             return $baseUrl;
+        }
     }
 
     public function proxyGet(Request $request)
     {
         $client = new \GuzzleHttp\Client();
         $res = $client->request('GET', $this->getRoute($request));
+
         return response($res->getBody(), $res->getStatusCode())->withHeaders($res->getHeaders());
     }
 
-    public function proxyPost(Request $request, Response $response)
+    public function proxyPost(Request $request)
     {
-        return $this->getRoute($request);
+        $client = new \GuzzleHttp\Client();
+        $res = $client->request('POST', $this->getRoute($request), ['body' => $request->getContent()]);
+        print_r($res->getStatusCode());
+        $headers = $res->getHeaders();
+        unset($headers['Transfer-Encoding']);
+
+        return response($res->getBody(), $res->getStatusCode())->withHeaders($headers);
     }
 }
