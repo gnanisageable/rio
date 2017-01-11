@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Response;
 use Illuminate\Routing\Controller as BaseController;
 
 class ProxyController extends BaseController
@@ -36,10 +37,8 @@ class ProxyController extends BaseController
     {
         $client = new \GuzzleHttp\Client();
         $res = $client->request('POST', $this->getRoute($request), ['body' => $request->getContent()]);
-        print_r($res->getStatusCode());
         $headers = $res->getHeaders();
         unset($headers['Transfer-Encoding']);
-
         return response($res->getBody(), $res->getStatusCode())->withHeaders($headers);
     }
 }
