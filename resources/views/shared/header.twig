@@ -56,14 +56,14 @@
                 <p class="fieldset">
                     <label class="image-replace cd-email" for="signin-email">E-mail</label>
                     <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
-                    <span class="cd-error-message">Error message here!</span>
+                    <span class="cd-error-message">Enter your E-mail ID.</span>
                 </p>
 
                 <p class="fieldset">
                     <label class="image-replace cd-password" for="signin-password">Password</label>
                     <input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="Password">
                     <a href="#0" class="hide-password">Hide</a>
-                    <span class="cd-error-message">Error message here!</span>
+                    <span class="cd-error-message">Enter your password</span>
                 </p>
 
                 <p class="fieldset">
@@ -87,7 +87,7 @@
             <!-- sign up form -->
             <form class="cd-form">
                 <p class="fieldset">
-                    <label class="image-replace cd-name" for="signup-name">Username</label>
+                    <label class="image-replace cd-name" for="signup-name">Name</label>
                     <input class="full-width has-padding has-border" id="signup-name" type="text" placeholder="Name">
                     <span class="cd-error-message">Error message here!</span>
                 </p>
@@ -149,11 +149,15 @@
 <!-- cd-user-modal -->
 <script type="text/javascript">
     $('.js-login-button').on("click", function() {
+      var data = {
+        'email': $('#signin-email').val(),
+        'password': $('#signin-password').val()
+      };
 
       $.ajax({
          type: "POST",
          url: "/api/member/login",
-         data: JSON.stringify({'email': $('#signin-email').val(),'password': $('#signin-password').val()}),
+         data: JSON.stringify(data),
          contentType: 'application/json',
          success: function (data) {
            console.log(data.status);
@@ -181,7 +185,7 @@
            console.log(data);
          },
          error: function (data) {
-           console.log('Error:', data);
+           console.log('Error:', data.status);
          }
       });
     })
