@@ -159,8 +159,8 @@
             url: "/api/member/login",
             data: JSON.stringify(data),
             contentType: 'application/json',
-            success: function(data) {
-                if (200 == data.status) {
+            success: function(data, statusMessage, xhr) {
+                if (200 == xhr.status) {
                     console.log("Logged in");
                 }
             },
@@ -185,8 +185,8 @@
             url: "/api/member",
             data: JSON.stringify(data),
             contentType: 'application/json',
-            success: function(data) {
-                if (201 == data.status) {
+            success: function(data, statusMessage, xhr) {
+                if (201 == xhr.status) {
                     console.log("User created");
                 }
             },
