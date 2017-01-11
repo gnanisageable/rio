@@ -95,7 +95,7 @@
                 <p class="fieldset">
                     <label class="image-replace cd-email" for="signup-email">E-mail</label>
                     <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
-                    <span class="cd-error-message">Error message here!</span>
+                    <span class="cd-error-message js-email-warning">Error message here!</span>
                 </p>
 
                 <p class="fieldset">
@@ -149,44 +149,52 @@
 <!-- cd-user-modal -->
 <script type="text/javascript">
     $('.js-login-button').on("click", function() {
-      var data = {
-        'email': $('#signin-email').val(),
-        'password': $('#signin-password').val()
-      };
+        var data = {
+            'email': $('#signin-email').val(),
+            'password': $('#signin-password').val()
+        };
 
-      $.ajax({
-         type: "POST",
-         url: "/api/member/login",
-         data: JSON.stringify(data),
-         contentType: 'application/json',
-         success: function (data) {
-           console.log(data.status);
-         },
-         error: function (data) {
-           console.log('Error:', data.status);
-         }
-      });
+        $.ajax({
+            type: "POST",
+            url: "/api/member/login",
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            success: function(data) {
+                if (200 == data.status) {
+                    console.log("Logged in");
+                }
+            },
+            error: function(data) {
+                if (401 == data.status) {
+                    console.log("Unauthorized");
+                }
+            }
+        });
     })
 
     $('.js-signup-button').on("click", function() {
-      var data = {
-          'name': $('#signup-name').val(),
-          'username': $('#signup-name').val(),
-          'email': $('#signup-email').val(),
-          'password': $('#signup-password').val(),
-      }
+        var data = {
+            'name': $('#signup-name').val(),
+            'username': $('#signup-name').val(),
+            'email': $('#signup-email').val(),
+            'password': $('#signup-password').val()
+        }
 
-      $.ajax({
-         type: "POST",
-         url: "/api/member",
-         data: JSON.stringify(data),
-         contentType: 'application/json',
-         success: function (data) {
-           console.log(data);
-         },
-         error: function (data) {
-           console.log('Error:', data.status);
-         }
-      });
+        $.ajax({
+            type: "POST",
+            url: "/api/member",
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            success: function(data) {
+                if (201 == data.status) {
+                    console.log("User created");
+                }
+            },
+            error: function(data) {
+                if (409 == data.status) {
+                    console.log("User exists");
+                }
+            }
+        });
     })
 </script>
