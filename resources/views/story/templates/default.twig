@@ -15,17 +15,9 @@
 <div class="story-body">
   {% include "story/cards" with {'storyCards': storyData['cards']} %}
   {% if storyData['story-template'] == 'news-elsewhere' %}
-  <a class="button" href="#external-story">Read more</a>
-  <div id="external-story" class="overlay">
-    <div class="popup">
-        <a class="close" href="#">&times;</a>
-        <div class="content">
-            <div class="iframe-wrap">
-                <iframe class="frame" src="http://timesofindia.indiatimes.com/entertainment/hindi/bollywood/news/watch-hrithik-roshan-invites-fans-to-the-success-bash-of-kaabil/articleshow/56946829.cms"></iframe>
-            </div>
-        </div>
+    <div class="">
+      {% include "story/elements/external" with {'reference-url': storyData} %}
     </div>
-  </div>
   {% endif %}
   {% include "story/tags" with {'storyTags': storyData['tags']} %}
   {% include "story/ads" %}
