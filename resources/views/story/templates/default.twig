@@ -16,7 +16,7 @@
   {% include "story/cards" with {'storyCards': storyData['cards']} %}
   {% if storyData['story-template'] == 'news-elsewhere' %}
     <div class="">
-      {% include "story/elements/external" with {'reference-url': storyData} %}
+      {% include "story/elements/external" %}
     </div>
   {% endif %}
   {% include "story/tags" with {'storyTags': storyData['tags']} %}
