@@ -145,6 +145,7 @@ ul li {
     width: 100%;
     z-index: $zIndex-1;
     word-wrap: break-word;
+    background: linear-gradient(to bottom, transparent 0%, transparent 10%, rgba(0, 0, 0, 0.8) 100%);
 }
 
 .leftcontainer {
@@ -165,16 +166,6 @@ ul li {
     }
 }
 
-.leftcontainer .figcontainer:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, transparent 0%, transparent 70%, rgba(0, 0, 0, 0.7) 100%);
-}
-
 .section_left .figcontainer:after {
     content: '';
     position: absolute;
@@ -182,7 +173,7 @@ ul li {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, transparent 0%, transparent 70%, rgba(0, 0, 0, 0.7) 100%);
+    background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(0, 0, 0, 0.9) 90%);
 }
 
 .rightcontainer .figcontainer:after {
@@ -192,7 +183,7 @@ ul li {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, transparent 0%, transparent 60%, rgba(0, 0, 0, 0.7) 100%);
+    background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(0, 0, 0, 0.9) 90%);
 }
 
 .rightsmall figure:after {
@@ -202,7 +193,7 @@ ul li {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, transparent 0%, transparent 60%, rgba(0, 0, 0, 0.7) 100%);
+    background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(0, 0, 0, 0.9) 90%);
 }
 
 .article_left .figcontainer:after {
@@ -212,7 +203,7 @@ ul li {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, transparent 0%, transparent 80%, rgba(0, 0, 0, 0.7) 100%);
+    background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(0, 0, 0, 0.9) 90%);
 }
 
 .rightcontainer {
@@ -669,8 +660,7 @@ article {
         width: 33.33333%;
         margin: 0px;
         padding: 0px;
-        margin-bottom: 20px;
-        margin: 0px 7px;
+        margin: 36px 7px 20px;
         @include breakpoint($phone) {
             flex: 0 1 96%;
             margin: 0 auto;
@@ -728,7 +718,7 @@ article {
     font-size: 12px;
     font-weight: $regular;
     padding-bottom: 10px;
-    font-family: $sans;
+    font-family: $proxima;
     margin-bottom: em(20);
     position: relative;
     float: left;
@@ -896,7 +886,7 @@ article {
     }
     a {
         font-size: em(14);
-        font-family: $sans;
+        font-family: $proxima;
         cursor: pointer;
     }
 }
