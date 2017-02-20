@@ -18,6 +18,23 @@
   width: 60%;
   position: relative;
   transition: all 5s ease-in-out;
+  .close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 20px;
+    border: 2px solid $black;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 18px;
+    transition: all 0.4s;
+    &:hover {
+      background: $light-blue;
+      color: $white;
+    }
+  }
 }
 
 .iframe-wrap {
