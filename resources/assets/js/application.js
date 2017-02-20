@@ -52,6 +52,8 @@ $(document).ready(function(){
   $( '.story-element-text a[href^="http://"] ' ).attr( 'target','_blank' );
   $( '.story-element-text a[href^="https://"] ' ).attr( 'target','_blank' );
 
+  $('#external-story').css('display', 'none');
+
   $('.more').click(function(e) {
     e.stopPropagation();
     $('#external-story').fadeIn('slow');
