@@ -7,7 +7,7 @@ return [
     "host-to-api-host" => array(
         "staging.lvh.me" => "https://demo-rio.staging.quintype.io"
     ),
-    "api-host" => "http://sketches.quintype.com",
-    "image-cdn" => "https://images.assettype.com",
+    "api-host" => "http://demo-rio-web.staging.quintype.io",
+    "image-cdn" => "http://d9zv4zsfqrm9s.cloudfront.net",
     "title" => "Quintype demo"
 ];
