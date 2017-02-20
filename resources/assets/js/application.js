@@ -52,4 +52,16 @@ $(document).ready(function(){
   $( '.story-element-text a[href^="http://"] ' ).attr( 'target','_blank' );
   $( '.story-element-text a[href^="https://"] ' ).attr( 'target','_blank' );
 
+  $('.more').on('click', function() {
+    $('#external-story').fadeIn('slow');
+    $('#external-story').addClass('overlay');
+    $("body").css('overflow-y', 'hidden');
+  })
+
+  $('#external-story .popup .close').on('click', function() {
+    $('#external-story').fadeOut('slow');
+    $('#external-story').removeClass('overlay');
+    $("body").css('overflow-y', 'auto');
+  })
+
 });
