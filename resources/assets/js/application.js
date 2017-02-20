@@ -52,8 +52,6 @@ $(document).ready(function(){
   $( '.story-element-text a[href^="http://"] ' ).attr( 'target','_blank' );
   $( '.story-element-text a[href^="https://"] ' ).attr( 'target','_blank' );
 
-  $('#external-story').css('display', 'none');
-
   $('.more').click(function(e) {
     e.stopPropagation();
     $('#external-story').fadeIn('slow');
@@ -67,6 +65,7 @@ $(document).ready(function(){
 
   function closeExternalStoryPopUp() {
     $('#external-story').fadeOut('slow');
+    $('#external-story').css('display', 'none');
     $('#external-story').removeClass('overlay');
     $("body").css('overflow-y', 'auto');
   }
