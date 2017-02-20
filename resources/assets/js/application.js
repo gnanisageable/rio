@@ -52,16 +52,23 @@ $(document).ready(function(){
   $( '.story-element-text a[href^="http://"] ' ).attr( 'target','_blank' );
   $( '.story-element-text a[href^="https://"] ' ).attr( 'target','_blank' );
 
-  $('.more').on('click', function() {
+  $('.more').click(function(e) {
+    e.stopPropagation();
     $('#external-story').fadeIn('slow');
     $('#external-story').addClass('overlay');
     $("body").css('overflow-y', 'hidden');
+    $('#external-story .popup').click(function(e) {
+      e.stopPropagation();
+    });
+    $("body").click(closeExternalStoryPopUp);
   })
 
-  $('#external-story .popup .close').on('click', function() {
+  function closeExternalStoryPopUp() {
     $('#external-story').fadeOut('slow');
     $('#external-story').removeClass('overlay');
     $("body").css('overflow-y', 'auto');
-  })
+  }
+
+  $('#external-story .popup .close').click(closeExternalStoryPopUp);
 
 });
