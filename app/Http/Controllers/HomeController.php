@@ -52,7 +52,7 @@ class HomeController extends QuintypeController
 
     public function storyview($category, $y, $m, $d, $slug)
     {
-        $story = $this->client->storyBySlug(['slug' => $slug]);
+        $story = $this->client->storyBySlug(['slug' => $slug, 'format'=>'amp']);
         $this->client->executeBulk();
 
         $sectionNames = $this->getSectionNames($story);
@@ -61,6 +61,12 @@ class HomeController extends QuintypeController
             $author_data = $this->client->getAuthor($story['authors'][$kk]['id']);
             $authorbio = strip_tags($author_data['bio']);
             array_push($otherAuthor, $author_data);
+        }
+        $slugEncode = urlencode($story['slug']);
+        $ampUrl = "/amp/story/".$slugEncode;
+        if (array_key_exists('is-amp-supported', $story) != '1') {
+          $story['is-amp-supported']='';
+          array_push($story,$story['is-amp-supported']);
         }
         $getRatingValues = $this->getAverageRating($story);
         $authorDetails = $this->client->getAuthor($story['author-id']);
@@ -94,6 +100,7 @@ class HomeController extends QuintypeController
           'authorDetails' => $authorDetails,
           'getRatingValues' => $getRatingValues,
           'page' => $page,
+          'ampUrl'=> $ampUrl,
           'meta' => $this->meta,
           'sectionNames' => $sectionNames
         ]));

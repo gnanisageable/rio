@@ -8,6 +8,9 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
     <script type="text/javascript" src="{{ assetPath("application.js") }}"></script>
     <meta name="twitter:widgets:csp" content="on">
+    {% if (page['type'] == 'story') and storyData['is-amp-supported'] %}
+      <link rel="amphtml" href="{{ampUrl}}">
+    {% endif %}
     {{ meta.display([], true)|raw }}
 
     <!-- Google ads -->

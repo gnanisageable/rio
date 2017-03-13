@@ -4,6 +4,9 @@
 Route::get('/qlitics.js', "ProxyController@proxyGet");
 Route::get('/api/{route}', "ProxyController@proxyGet")->where('route', '.*');
 Route::post('/api/{route}', "ProxyController@proxyPost")->where('route', '.*');
+Route::get('/amp/{route}', "ProxyController@proxyGet")->where('route', '.*');
+Route::post('/amp/{route}', "ProxyController@proxyPost")->where('route', '.*');
+
 
 /*
   |--------------------------------------------------------------------------
