@@ -9,7 +9,7 @@ var excludeStoryIds =[];
 function nextStoryLoader(params,start,callback,excludeStoryIds) {
   params['limit'] = 1;
   var notStoryContentIds = _.toString(excludeStoryIds);
-  var fields = 'id,headline,slug,hero-image-s3-key,hero-image-metadata,first-published-at,last-published-at,alternative,published-at,author-name,author-id,sections,story-template,summary,metadata,hero-image-attribution,cards,subheadline,authors,tags';
+  var fields = 'id,headline,slug,hero-image-s3-key,hero-image-metadata,hero-image-caption,first-published-at,last-published-at,alternative,published-at,author-name,author-id,sections,story-template,summary,metadata,hero-image-attribution,cards,subheadline,authors,tags';
   $.getJSON("/api/v1/stories", _.merge({}, params, {offset: start, fields: fields,'not-story-content-ids': notStoryContentIds}),
     (response) => callback(_.first(response["stories"])))
 }
